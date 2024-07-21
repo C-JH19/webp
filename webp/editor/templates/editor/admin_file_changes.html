@@ -1,0 +1,37 @@
+{% extends 'editor/base.html' %}
+
+{% block title %}Admin File Changes{% endblock %}
+
+{% block content %}
+<h2>Admin File Changes</h2>
+<table>
+    <thead>
+        <tr>
+            <th>File</th>
+            <th>User</th>
+            <th>Change Text</th>
+            <th>Timestamp</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for change in file_changes %}
+        <tr>
+            <td>{{ change.file }}</td>
+            <td>{{ change.user }}</td>
+            <td>
+                <pre>{{ change.change_text }}</pre>
+            </td>
+            <td>{{ change.created_at }}</td>
+            <td>
+                <a href="{% url 'download_file' change.file.id %}">Download</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No file changes available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

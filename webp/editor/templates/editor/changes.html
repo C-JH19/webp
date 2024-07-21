@@ -1,0 +1,14 @@
+{% extends 'editor/base.html' %}
+
+{% block title %}File Changes{% endblock %}
+
+{% block content %}
+<h2>File Changes</h2>
+<pre>
+        {% for change in changes %}
+            {{ change }}
+        {% empty %}
+            No changes to display.
+        {% endfor %}
+    </pre>
+{% endblock %}
